@@ -20,11 +20,11 @@ class MatrixDisplay:
     if remaining_space(self.led_matrix, text_width(hashtag_string, 1)) > 0:
       text_size = set_size(self.led_matrix, hashtag_string)
       starting_point = define_starting_point(self.led_matrix, hashtag_string, text_size)
-      reset_screen()
+      self.reset_screen()
       self.led_matrix.drawText(hashtag_string, starting_point['x'], starting_point['y'], colors.White, colors.Off, text_size)
       self.led_matrix.update()
     else:
-      scroll_text(self.led_matrix, hashtag_string)
+      self.scroll_text(hashtag_string)
 
   def reset_screen(self):
     self.led_matrix.all_off()
@@ -40,3 +40,7 @@ class MatrixDisplay:
         self.reset_screen()
         self.display(new_hashtag_string)
       time.sleep(5)
+
+  def scroll_text(self, hashtag_string):
+    anim = ScrollText(self.led_matrix, hashtag_string, size=1)
+    anim.run()
