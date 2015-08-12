@@ -1,5 +1,5 @@
 CXXFLAGS=-Wall -O3 -g -fno-strict-aliasing
-BINARIES=rgbmatrix.so
+BINARIES=led-matrix minimal-example text-example rgbmatrix.so
 
 # Where our library resides. It is split between includes and the binary
 # library in lib
@@ -10,6 +10,18 @@ RGB_LIBRARY=$(RGB_LIBDIR)/lib$(RGB_LIBRARY_NAME).a
 LDFLAGS+=-L$(RGB_LIBDIR) -l$(RGB_LIBRARY_NAME) -lrt -lm -lpthread
 
 all : $(BINARIES)
+
+$(RGB_LIBRARY):
+	$(MAKE) -C $(RGB_LIBDIR)
+
+led-matrix : demo-main.o $(RGB_LIBRARY)
+	$(CXX) $(CXXFLAGS) demo-main.o -o $@ $(LDFLAGS)
+
+minimal-example : minimal-example.o $(RGB_LIBRARY)
+	$(CXX) $(CXXFLAGS) minimal-example.o -o $@ $(LDFLAGS)
+
+text-example : text-example.o $(RGB_LIBRARY)
+	$(CXX) $(CXXFLAGS) text-example.o -o $@ $(LDFLAGS)
 
 # Python module
 rgbmatrix.so: rgbmatrix.o $(RGB_LIBRARY)
