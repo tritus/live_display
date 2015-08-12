@@ -1,7 +1,7 @@
 import redis
 import time
 import math
-from lib.matrix.rgbmatrix import Adafruit_RGBmatrix
+from rgbmatrix import Adafruit_RGBmatrix
 from lib.bibliopixel.drivers.driver_base import *
 from lib.bibliopixel import *
 import lib.bibliopixel.colors as colors
