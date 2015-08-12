@@ -2,9 +2,9 @@ from matrix.driver_ada_matrix import *
 from bibliopixel import *
 import bibliopixel.colors as colors
 import bibliopixel.log as log
+from matrix.text_adapter import *
 import redis
 import time
-import math
 
 class MatrixDisplay:
 
@@ -30,13 +30,13 @@ class MatrixDisplay:
     self.led_matrix.all_off()
     self.led_matrix.update()
 
-  def start_display():
+  def start_display(self):
     previous_hashtag_string = ''
     new_hashtag_string = ''
     while 1:   
       previous_hashtag_string = new_hashtag_string
-      new_hashtag_string = database.get('display')
+      new_hashtag_string = self.database.get('display')
       if new_hashtag_string != previous_hashtag_string:
-        reset_screen()
-        display(new_hashtag_string)
+        self.reset_screen()
+        self.display(new_hashtag_string)
       time.sleep(5)
