@@ -1,11 +1,4 @@
-import redis
-import time
-import math
 from matrix.rgbmatrix import Adafruit_RGBmatrix
-from bibliopixel.drivers.driver_base import *
-from bibliopixel import *
-import bibliopixel.colors as colors
-import bibliopixel.log as log
 
 class DriverAdaMatrix(DriverBase):
     # rows: height of the matrix, same as led-matrix example
@@ -25,37 +18,3 @@ class DriverAdaMatrix(DriverBase):
         if bits < 1 or bits > 11:
             raise ValueError("PWM level must be between 1 and 11")
         self._matrix.SetPWMBits(bits)
-
-def displayer(led, hashtag_string):
-  if remaining_space(led, text_width(hashtag_string, 1)) > 0:
-    text_size = set_size(led, hashtag_string)
-    starting_point = define_starting_point(led, hashtag_string, text_size)
-    led.all_off()
-    led.update()
-    led.drawText(hashtag_string, starting_point['x'], starting_point['y'], colors.White, colors.Off, text_size)
-    led.update()
-  else:
-    scroll_text(led, hashtag_string)
-
-
-def text_width(text, size):
-  return (len(text)*6-1)*size
-
-def remaining_space(led_object, text_w):
-  return led_object.width-text_w
-
-def set_size(led_object, text):
-  size = 1
-  while remaining_space(led_object, text_width(text, size)) > (len(text)*6-1) and 8*(size+1) < led_object.height:
-    size += 1
-  return size
-
-def define_starting_point(led_object, text, text_size):
-  starting_point = {}
-  starting_point['x']=int(math.floor(remaining_space(led_object, text_width(text, text_size))/2))
-  starting_point['y']=int(math.floor((led_object.height-8*text_size)/2))
-  return starting_point
-
-def scroll_text(led, text):
-  anim = ScrollText(led, text, size=1)
-  anim.run()
