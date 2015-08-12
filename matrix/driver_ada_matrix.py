@@ -1,5 +1,3 @@
-from matrix.rgbmatrix import Adafruit_RGBmatrix
-
 class DriverAdaMatrix(DriverBase):
     # rows: height of the matrix, same as led-matrix example
     # chain: number of LEDMatrix panels, same as led-matrix example
