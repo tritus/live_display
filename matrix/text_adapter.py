@@ -1,3 +1,5 @@
+import math
+
 def text_width(text, size):
   return (len(text)*6-1)*size
 
