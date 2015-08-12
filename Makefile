@@ -11,6 +11,9 @@ LDFLAGS+=-L$(RGB_LIBDIR) -l$(RGB_LIBRARY_NAME) -lrt -lm -lpthread
 
 all : $(BINARIES)
 
+$(RGB_LIBRARY):
+	$(MAKE) -C $(RGB_LIBDIR)
+
 # Python module
 rgbmatrix.so: rgbmatrix.o $(RGB_LIBRARY)
 	$(CXX) -s -shared -lstdc++ -Wl,-soname,librgbmatrix.so -o $@ $< $(LDFLAGS)
