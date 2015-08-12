@@ -27,12 +27,15 @@ class DriverAdaMatrix(DriverBase):
         self._matrix.SetPWMBits(bits)
 
 def displayer(led, hashtag_string):
-  text_size = set_size(led, hashtag_string)
-  starting_point = define_starting_point(led, hashtag_string, text_size)
-  led.all_off()
-  led.update()
-  led.drawText(hashtag_string, starting_point['x'], starting_point['y'], colors.White, colors.Off, text_size)
-  led.update()
+  if remaining_space(led, text_width(hashtag_string, 1)) > 0:
+    text_size = set_size(led, hashtag_string)
+    starting_point = define_starting_point(led, hashtag_string, text_size)
+    led.all_off()
+    led.update()
+    led.drawText(hashtag_string, starting_point['x'], starting_point['y'], colors.White, colors.Off, text_size)
+    led.update()
+  else:
+    scroll_text(led, hashtag_string)
 
 
 def text_width(text, size):
@@ -52,3 +55,7 @@ def define_starting_point(led_object, text, text_size):
   starting_point['x']=int(math.floor(remaining_space(led_object, text_width(text, text_size))/2))
   starting_point['y']=int(math.floor((led_object.height-8*text_size)/2))
   return starting_point
+
+def scroll_text(led, text):
+  anim = ScrollText(led, text, size=1)
+  anim.run()
