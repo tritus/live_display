@@ -1,4 +1,5 @@
 from matrix.rgbmatrix import Adafruit_RGBmatrix
+from bibliopixel.drivers.driver_base import *
 
 class DriverAdaMatrix(DriverBase):
     # rows: height of the matrix, same as led-matrix example
