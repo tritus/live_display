@@ -14,7 +14,7 @@ class MatrixDisplay:
     log.setLogLevel(log.DEBUG)
     self.database = redis.StrictRedis(host='localhost', port=6379, db=0)
     #MUST use serpentine=False because rgbmatrix handles the data that way
-    self.led_matrix = LEDMatrix(driver, _rows*_chain, _rows, serpentine=False, threadedUpdate = True)
+    self.led_matrix = LEDMatrix(driver, _rows*_chain, _rows, serpentine=False, threadedUpdate = False)
 
   def display(self, hashtag_string):
     if remaining_space(self.led_matrix, text_width(hashtag_string, 1)) > 0:
