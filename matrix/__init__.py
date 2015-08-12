@@ -5,4 +5,3 @@ from bibliopixel.drivers.driver_base import *
 from bibliopixel import *
 import bibliopixel.colors as colors
 import bibliopixel.log as log
-from matrix.rgbmatrix import Adafruit_RGBmatrix
