@@ -1,11 +1,11 @@
 import redis
 import time
 import math
-from rgbmatrix import Adafruit_RGBmatrix
-from lib.bibliopixel.drivers.driver_base import *
-from lib.bibliopixel import *
-import lib.bibliopixel.colors as colors
-import lib.bibliopixel.log as log
+from matrix.rgbmatrix import Adafruit_RGBmatrix
+from bibliopixel.drivers.driver_base import *
+from bibliopixel import *
+import bibliopixel.colors as colors
+import bibliopixel.log as log
 
 class DriverAdaMatrix(DriverBase):
     # rows: height of the matrix, same as led-matrix example
