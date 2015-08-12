@@ -1,4 +1,10 @@
 from matrix.driver_ada_matrix import *
+from bibliopixel import *
+import bibliopixel.colors as colors
+import bibliopixel.log as log
+import redis
+import time
+import math
 
 class MatrixDisplay:
 
