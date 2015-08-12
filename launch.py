@@ -1,4 +1,4 @@
-from matrix_handler import *
+from matrix.matrix_handler import *
 
 try:
   driver = DriverAdaMatrix(rows=32, chain=4)
